@@ -199,16 +199,18 @@ for i from 1 to N
 ***`O(n^3)`***
 
 ```
-BEGIN
-	FOR ALL V=!S,D[V]=~;
-	   D[S]=0;
-	     FOR ALL V,  X[V]=NIL;
-	     FOR STEP =1 TO N;
-	      FOR(U,V) BELONGS TO E;
-	        IF (D[W]+W[U,V]< D[V])
-	            D[V] =D[W]+W[U,V]<D[V]);
-	            X[V]=U;
-END;
+for v in V:
+    v.distance = infinity
+    v.p = None
+source.distance = 0
+for i from 1 to |V| - 1:
+    for (u, v) in E:
+        if v.distance > u.distance + weight(u, v):
+        v.distance = u.distance + weight(u, v)
+        v.p = u
+for (u, v) in E:
+    if v.distance > u.distance + weight(u, v):
+        print "A negative weight cycle exists"
 ```
 
 ### FLOYD - WARSHALL
