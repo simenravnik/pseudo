@@ -1,3 +1,9 @@
+---
+title: "Algoritmi"
+author: Simen Ravnik
+date: June 4, 2019
+---
+
 
 # ALGORITMI IN PODATKOVNE STRUKTURE 2
 
@@ -9,17 +15,52 @@ Avtor: Simen Ravnik
 Datum: June, 2019
 
 Nosilec predmeta: prof. dr. Borut Robic
-
-Note: Pseudokode niso moje avtorsko delo, bile so
-      poiskane na internetu in zdruzene v ta file.
 ```
+
+> *Note: Pseudokode niso moje avtorsko delo.*
+
+---
+## Big O Notation
+
+```math
+O(g(n))={f(n) ∣ ∃c, n_0 >0∀ n≥n_0 :0 ≤ f (n) ≤ cg(n)}
+```
+
+```math
+Ω(g(n))={f (n) ∣ ∃c ,n_0 >0∀n≥n_0 :0≤cg(n)≤f (n)}
+```
+
+```math
+Θ(g(n))={f(n) ∣∃c_1 ,c_2,n_0>0∀n≥n_0:0≤c_1 g(n)≤f(n)≤c_2g(n)}
+```
+
+***Z limitami:***
+
+```math
+f(n)=O(g(n)):
+\quad
+{\displaystyle \limsup _{n\to \infty }{\frac {\left|f(n)\right|}{g(n)}}<\infty }
+```
+
+```math
+f(n)=\Omega (g(n)):
+\quad
+{\displaystyle \liminf _{n\to \infty }{\frac {f(n)}{g(n)}}>0}
+```
+
+```math
+f(n)=\Theta (g(n)):
+\space
+f(n)=O(g(n)) \space and \space
+f(n)=Ω(g(n))
+```
+
 ---
 
 ## Sorting algoritmi
 
 ### BUBBLE SORT
 ***`O(n^2)`***
-
 ```
 swapped = true
    while swapped
@@ -228,4 +269,26 @@ for k = 1 to N
    for i = 1 to N
       for j = 1 to N
          dist[k][i][j] = min(dist[k-1][i][j], dist[k-1][i][k] + dist[k-1][k][j])
+```
+
+### FFT
+***`O(nlogn)`***
+
+```
+fun recursiveFFT(a) is
+	n = a.length
+	if n == 1 then return a
+	ys = recursiveFFT([a , a , ..., a ])
+	yl = recursiveFFT([a , a , ..., a ])
+
+	w = e^(2 PI i / n)
+	wk = 1
+	y = [0, 0, ..., 0]
+	for k = 0 to n/2­1 do
+		y[k] = ys[k] + wk * yl[k]
+		y[k+n/2] = ys[k] – wk * yl[k]
+		wk = wk * w
+	end
+	return y
+end
 ```
