@@ -22,17 +22,11 @@ Nosilec predmeta: prof. dr. Borut Robic
 ---
 ## Big O Notation
 
-```math
-O(g(n))={f(n) ∣ ∃c, n_0 >0∀ n≥n_0 :0 ≤ f (n) ≤ cg(n)}
-```
+$$ O(g(n))={f(n) ∣ ∃c, n_0 >0∀ n≥n_0 :0 ≤ f (n) ≤ cg(n)} $$
 
-```math
-Ω(g(n))={f (n) ∣ ∃c ,n_0 >0∀n≥n_0 :0≤cg(n)≤f (n)}
-```
+$$ Ω(g(n))={f (n) ∣ ∃c ,n_0 >0∀n≥n_0 :0≤cg(n)≤f (n)} $$
 
-```math
-Θ(g(n))={f(n) ∣∃c_1 ,c_2,n_0>0∀n≥n_0:0≤c_1 g(n)≤f(n)≤c_2g(n)}
-```
+$$ Θ(g(n))={f(n) ∣∃c_1 ,c_2,n_0>0∀n≥n_0:0≤c_1 g(n)≤f(n)≤c_2g(n)} $$
 
 ***Z limitami:***
 
@@ -210,6 +204,64 @@ TO DO...
 TO DO...
 ```
 
+---
+## Mnozenje stevil
+
+### MNOZENJE DELI IN VLADAJ
+```
+Algorithm Divide-Mult(a,b):
+if a or b has one digit, then:
+    return a * b.
+else:
+    Let n be the number of digits in max{a, b}.
+
+    Let aL and aR be left and right halves of a.
+    Let bL and bR be left and right halves of b.
+
+    Let x1 hold Divide-Mult(aL, bL).
+    Let x2 hold Divide-Mult(aL, bR).
+    Let x3 hold Divide-Mult(aR, bL).
+    Let x4 hold Divide-Mult(aR, bR).
+
+    return x1*10n + (x2 + x3)*10n/2 + x4.
+end of if
+```
+
+### KARATSUBA
+```
+procedure karatsuba(num1, num2)
+  if (num1 < 10) or (num2 < 10)
+    return num1*num2
+
+  /* calculates the size of the numbers */
+  m = min(size_base10(num1), size_base10(num2))
+  m2 = floor(m/2)
+  /*m2 = ceil(m/2) will also work */
+
+  /* split the digit sequences in the middle */
+  high1, low1 = split_at(num1, m2)
+  high2, low2 = split_at(num2, m2)
+
+  /* 3 calls made to numbers approximately half the size */
+  z0 = karatsuba(low1, low2)
+  z1 = karatsuba((low1 + high1), (low2 + high2))
+  z2 = karatsuba(high1, high2)
+
+  return (z2 * 10 ^ (m2 * 2)) + ((z1 - z2 - z0) * 10 ^ m2) + z0
+```
+
+---
+## Mnozenje matrik
+
+### DELI IN VLADAJ
+`TO DO...`
+
+### STRASSEN
+`TO DO...`
+
+---
+## Ostali
+
 ### BINARY SEARCH
 ***`O(logn)`***
 
@@ -229,6 +281,9 @@ search(a, left, right, x)
 ### TOPOLOSKO UREJANJE
 ***`O(|v|^2)`***
 
+> Uredimo lahko samo aciklicne grafe.
+> "Po povezavah narascajo tudi oznake vozlisc."
+
 ```
 for i from 1 to N
     select some vertex v with indegree(v) equal to 0
@@ -238,6 +293,8 @@ for i from 1 to N
 
 ### BELLMAN - FORD
 ***`O(n^3)`***
+
+> Shortest path
 
 ```
 for v in V:
@@ -256,6 +313,8 @@ for (u, v) in E:
 
 ### FLOYD - WARSHALL
 ***`O(n^3)`***
+
+> Shortest path
 
 ```
 for i = 1 to N
@@ -291,4 +350,17 @@ fun recursiveFFT(a) is
 	end
 	return y
 end
+```
+
+## 01 nahrbtnik
+```
+for j from 0 to W do:
+      m[0, j] := 0
+
+for i from 1 to n do:
+  for j from 0 to W do:
+      if w[i] > j then:
+          m[i, j] := m[i-1, j]
+      else:
+          m[i, j] := max(m[i-1, j], m[i-1, j-w[i]] + v[i])
 ```
