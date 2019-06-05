@@ -253,6 +253,16 @@ procedure karatsuba(num1, num2)
 ---
 ## Mnozenje matrik
 
+```
+# iterate through rows of X
+for i in range(len(X)):
+   # iterate through columns of Y
+   for j in range(len(Y[0])):
+       # iterate through rows of Y
+       for k in range(len(Y)):
+           result[i][j] += X[i][k] * Y[k][j]
+```
+
 ### DELI IN VLADAJ
 `TO DO...`
 
@@ -304,8 +314,8 @@ source.distance = 0
 for i from 1 to |V| - 1:
     for (u, v) in E:
         if v.distance > u.distance + weight(u, v):
-        v.distance = u.distance + weight(u, v)
-        v.p = u
+            v.distance = u.distance + weight(u, v)
+            v.p = u
 for (u, v) in E:
     if v.distance > u.distance + weight(u, v):
         print "A negative weight cycle exists"
@@ -352,7 +362,7 @@ fun recursiveFFT(a) is
 end
 ```
 
-## 01 nahrbtnik
+### 01 nahrbtnik
 ```
 for j from 0 to W do:
       m[0, j] := 0
@@ -363,4 +373,49 @@ for i from 1 to n do:
           m[i, j] := m[i-1, j]
       else:
           m[i, j] := max(m[i-1, j], m[i-1, j-w[i]] + v[i])
+```
+
+### k'th smallest element
+```
+def kthSmallest(arr, l, r, k):
+
+    # If k is smaller than number of  
+    # elements in array
+    if (k > 0 and k <= r - l + 1):
+
+        # Partition the array around last  
+        # element and get position of pivot
+        # element in sorted array
+        pos = partition(arr, l, r)
+
+        # If position is same as k
+        if (pos - l == k - 1):
+            return arr[pos]
+        if (pos - l > k - 1): # If position is more,  
+                              # recur for left subarray
+            return kthSmallest(arr, l, pos - 1, k)
+
+        # Else recur for right subarray
+        return kthSmallest(arr, pos + 1, r,
+                            k - pos + l - 1)
+
+    # If k is more than number of
+    # elements in array
+    return sys.maxsize
+```
+```
+# Standard partition process of QuickSort().  
+# It considers the last element as pivot and
+# moves all smaller element to left of it
+# and greater elements to right
+def partition(arr, l, r):
+
+    x = arr[r]
+    i = l
+    for j in range(l, r):
+        if (arr[j] <= x):
+            arr[i], arr[j] = arr[j], arr[i]
+            i += 1
+    arr[i], arr[r] = arr[r], arr[i]
+    return i
 ```
