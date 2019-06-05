@@ -22,7 +22,7 @@ Nosilec predmeta: prof. dr. Borut Robic
 ---
 ## Big O Notation
 
-$$ O(g(n))={f(n) ∣ ∃c, n_0 >0∀ n≥n_0 :0 ≤ f (n) ≤ cg(n)} $$
+![equation]($$ O(g(n))={f(n) ∣ ∃c, n_0 >0∀ n≥n_0 :0 ≤ f (n) ≤ cg(n)} $$)
 
 $$ Ω(g(n))={f (n) ∣ ∃c ,n_0 >0∀n≥n_0 :0≤cg(n)≤f (n)} $$
 
