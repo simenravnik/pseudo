@@ -1,0 +1,272 @@
+<h1 id="algoritmi-in-podatkovne-strukture-2">ALGORITMI IN PODATKOVNE STRUKTURE 2</h1>
+<pre><code>Ta datoteka vsebuje pseudokode algoritmov, ki smo jih
+spoznali na vajah.
+
+Avtor: Simen Ravnik
+Datum: June, 2019
+
+Nosilec predmeta: prof. dr. Borut Robic</code></pre>
+<blockquote>
+<p><em>Note: Pseudokode niso moje avtorsko delo.</em></p>
+</blockquote>
+<h2 id="sorting-algoritmi">Sorting algoritmi</h2>
+<h3 id="bubble-sort">BUBBLE SORT</h3>
+<p><strong><em><code>O(n^2)</code></em></strong></p>
+<pre><code>swapped = true
+   while swapped
+      swapped = false
+         for j from 0 to N - 1
+            if a[j] &gt; a[j + 1]
+               swap( a[j], a[j + 1] )
+               swapped = true</code></pre>
+<h3 id="selection-sort">SELECTION SORT</h3>
+<p><strong><em><code>O(n^2)</code></em></strong></p>
+<pre><code>func selectionSort(list)
+   max = length(list) - 1
+
+   for i from 0 to max
+      key = list[i]
+         keyj = i
+
+         for j from i+1 to max
+            if list[j] &lt; key
+               key = list[j]
+               keyj = j
+
+         list[keyj] = list[i]
+         list[i] = key
+    return list
+end func</code></pre>
+<h3 id="insertion-sort">INSERTION SORT</h3>
+<p><strong><em><code>O(n^2)</code></em></strong></p>
+<pre><code>for i from 1 to N
+   key = a[i]
+   j = i - 1
+   while j &gt;= 0 and a[j] &gt; key
+      a[j+1] = a[j]
+      j = j - 1
+   a[j+1] = key</code></pre>
+<h3 id="heap-sort">HEAP SORT</h3>
+<p><strong><em><code>O(nlogn)</code></em></strong></p>
+<pre><code>Heapsort(A as array)
+    BuildHeap(A)
+    for i = n to 1
+        swap(A[1], A[i])
+        n = n - 1
+        Heapify(A, 1)
+
+BuildHeap(A as array)
+    n = elements_in(A)
+    for i = floor(n/2) to 1
+        Heapify(A,i,n)
+
+Heapify(A as array, i as int, n as int)
+    left = 2i
+    right = 2i+1
+
+    if (left &lt;= n) and (A[left] &gt; A[i])
+        max = left
+    else
+        max = i
+
+    if (right&lt;=n) and (A[right] &gt; A[max])
+        max = right
+
+    if (max != i)
+        swap(A[i], A[max])
+        Heapify(A, max)</code></pre>
+<h3 id="merge-sort">MERGE SORT</h3>
+<p><strong><em><code>O(nlogn)</code></em></strong></p>
+<pre><code>func mergesort( var a as array )
+     if ( n == 1 ) return a
+
+     var l1 as array = a[0] ... a[n/2]
+     var l2 as array = a[n/2+1] ... a[n]
+
+     l1 = mergesort( l1 )
+     l2 = mergesort( l2 )
+
+     return merge( l1, l2 )
+end func
+
+func merge( var a as array, var b as array )
+     var c as array
+
+     while ( a and b have elements )
+          if ( a[0] &gt; b[0] )
+               add b[0] to the end of c
+               remove b[0] from b
+          else
+               add a[0] to the end of c
+               remove a[0] from a
+     while ( a has elements )
+          add a[0] to the end of c
+          remove a[0] from a
+     while ( b has elements )
+          add b[0] to the end of c
+          remove b[0] from b
+     return c
+end func</code></pre>
+<h3 id="quick-sort">QUICK SORT</h3>
+<p><strong><em><code>O(nlogn)</code></em></strong></p>
+<pre><code>Quicksort(A as array, low as int, high as int){
+    if (low &lt; high){
+        pivot_location = Partition(A,low,high)
+        Quicksort(A,low, pivot_location)
+        Quicksort(A, pivot_location + 1, high)
+    }
+}
+Partition(A as array, low as int, high as int){
+     pivot = A[low]
+     leftwall = low
+
+     for i = low + 1 to high{
+         if (A[i] &lt; pivot) then{
+             swap(A[i], A[leftwall + 1])
+             leftwall = leftwall + 1
+         }
+     }
+     swap(pivot,A[leftwall])
+
+    return (leftwall)
+}</code></pre>
+<h3 id="counting-sort">COUNTING SORT</h3>
+<pre><code>TO DO...</code></pre>
+<h3 id="radix-sort">RADIX SORT</h3>
+<pre><code>TO DO...</code></pre>
+<h2 id="mnozenje-matrik">Mnozenje matrik</h2>
+<pre><code># iterate through rows of X
+for i in range(len(X)):
+   # iterate through columns of Y
+   for j in range(len(Y[0])):
+       # iterate through rows of Y
+       for k in range(len(Y)):
+           result[i][j] += X[i][k] * Y[k][j]</code></pre>
+<h3 id="deli-in-vladaj">DELI IN VLADAJ</h3>
+<p><code>TO DO...</code></p>
+<h3 id="strassen">STRASSEN</h3>
+<p><code>TO DO...</code></p>
+<hr />
+<h2 id="ostali">Ostali</h2>
+<h3 id="binary-search">BINARY SEARCH</h3>
+<p><strong><em><code>O(logn)</code></em></strong></p>
+<pre><code>search(a, left, right, x)
+    if left &gt; right then
+        return -1
+    mid := left+floor((right-left) / 2)
+    if a[mid] = x then
+        return mid
+    else if a[mid] &gt; x then
+        return search(a, left, mid-1, x)
+    else
+        return search(a, mid+1, right, x)</code></pre>
+<h3 id="topolosko-urejanje">TOPOLOSKO UREJANJE</h3>
+<p><strong><em><code>O(|v|^2)</code></em></strong></p>
+<blockquote>
+<p>Uredimo lahko samo aciklicne grafe. “Po povezavah narascajo tudi oznake vozlisc.”</p>
+</blockquote>
+<pre><code>for i from 1 to N
+    select some vertex v with indegree(v) equal to 0
+    add v to our topological sort
+    remove v and all edges leading from it</code></pre>
+<h3 id="bellman---ford">BELLMAN - FORD</h3>
+<p><strong><em><code>O(n^3)</code></em></strong></p>
+<blockquote>
+<p>Shortest path</p>
+</blockquote>
+<pre><code>for v in V:
+    v.distance = infinity
+    v.p = None
+source.distance = 0
+for i from 1 to |V| - 1:
+    for (u, v) in E:
+        if v.distance &gt; u.distance + weight(u, v):
+            v.distance = u.distance + weight(u, v)
+            v.p = u
+for (u, v) in E:
+    if v.distance &gt; u.distance + weight(u, v):
+        print &quot;A negative weight cycle exists&quot;</code></pre>
+<h3 id="floyd---warshall">FLOYD - WARSHALL</h3>
+<p><strong><em><code>O(n^3)</code></em></strong></p>
+<blockquote>
+<p>Shortest path</p>
+</blockquote>
+<pre><code>for i = 1 to N
+ for j = 1 to N
+    if there is an edge from i to j
+       dist[0][i][j] = the length of the edge from i to j
+    else
+       dist[0][i][j] = INFINITY
+
+for k = 1 to N
+   for i = 1 to N
+      for j = 1 to N
+         dist[k][i][j] = min(dist[k-1][i][j], dist[k-1][i][k] + dist[k-1][k][j])</code></pre>
+<h3 id="fft">FFT</h3>
+<p><strong><em><code>O(nlogn)</code></em></strong></p>
+<pre><code>fun recursiveFFT(a) is
+    n = a.length
+    if n == 1 then return a
+    ys = recursiveFFT([a , a , ..., a ])
+    yl = recursiveFFT([a , a , ..., a ])
+
+    w = e^(2 PI i / n)
+    wk = 1
+    y = [0, 0, ..., 0]
+    for k = 0 to n/2­1 do
+        y[k] = ys[k] + wk * yl[k]
+        y[k+n/2] = ys[k] – wk * yl[k]
+        wk = wk * w
+    end
+    return y
+end</code></pre>
+<h3 id="nahrbtnik">01 nahrbtnik</h3>
+<pre><code>for j from 0 to W do:
+      m[0, j] := 0
+
+for i from 1 to n do:
+  for j from 0 to W do:
+      if w[i] &gt; j then:
+          m[i, j] := m[i-1, j]
+      else:
+          m[i, j] := max(m[i-1, j], m[i-1, j-w[i]] + v[i])</code></pre>
+<h3 id="kth-smallest-element">k’th smallest element</h3>
+<pre><code>def kthSmallest(arr, l, r, k):
+
+    # If k is smaller than number of  
+    # elements in array
+    if (k &gt; 0 and k &lt;= r - l + 1):
+
+        # Partition the array around last  
+        # element and get position of pivot
+        # element in sorted array
+        pos = partition(arr, l, r)
+
+        # If position is same as k
+        if (pos - l == k - 1):
+            return arr[pos]
+        if (pos - l &gt; k - 1): # If position is more,  
+                              # recur for left subarray
+            return kthSmallest(arr, l, pos - 1, k)
+
+        # Else recur for right subarray
+        return kthSmallest(arr, pos + 1, r,
+                            k - pos + l - 1)
+
+    # If k is more than number of
+    # elements in array
+    return sys.maxsize</code></pre>
+<pre><code># Standard partition process of QuickSort().  
+# It considers the last element as pivot and
+# moves all smaller element to left of it
+# and greater elements to right
+def partition(arr, l, r):
+
+    x = arr[r]
+    i = l
+    for j in range(l, r):
+        if (arr[j] &lt;= x):
+            arr[i], arr[j] = arr[j], arr[i]
+            i += 1
+    arr[i], arr[r] = arr[r], arr[i]
+    return i</code></pre>

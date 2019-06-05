@@ -1,9 +1,3 @@
----
-title: "Algoritmi"
-author: Simen Ravnik
-date: June 4, 2019
----
-
 
 # ALGORITMI IN PODATKOVNE STRUKTURE 2
 
@@ -24,34 +18,9 @@ Nosilec predmeta: prof. dr. Borut Robic
 
 ![alt text](https://github.com/simenravnik/pseudo/blob/master/1.png)
 
-$$ O(g(n))={f(n) ∣ ∃c, n_0 >0∀ n≥n_0 :0 ≤ f (n) ≤ cg(n)} $$
-
-$$ Ω(g(n))={f (n) ∣ ∃c ,n_0 >0∀n≥n_0 :0≤cg(n)≤f (n)} $$
-
-$$ Θ(g(n))={f(n) ∣∃c_1 ,c_2,n_0>0∀n≥n_0:0≤c_1 g(n)≤f(n)≤c_2g(n)} $$
-
 ***Z limitami:***
 
 ![alt text](https://github.com/simenravnik/pseudo/blob/master/2.png)
-
-```math
-f(n)=O(g(n)):
-\quad
-{\displaystyle \limsup _{n\to \infty }{\frac {\left|f(n)\right|}{g(n)}}<\infty }
-```
-
-```math
-f(n)=\Omega (g(n)):
-\quad
-{\displaystyle \liminf _{n\to \infty }{\frac {f(n)}{g(n)}}>0}
-```
-
-```math
-f(n)=\Theta (g(n)):
-\space
-f(n)=O(g(n)) \space and \space
-f(n)=Ω(g(n))
-```
 
 ---
 
